@@ -11,22 +11,6 @@
 |
 */
 
-Route::domain('{account}.multi.dev')->group(function () {
-    Route::get('/', function ($account) {
-        dd($account);
-    });
-});
-
 Route::get('/', function () {
-    return "This will respond to all other '/' requests.";
+    return view('welcome');
 });
-/*
-Route::group(['domain' => '{account}.multi.dev'], function () {
-    Route::get('/', function () {
-        return "This will respond to requests for 'admin.localhost/'";
-    });
-});
-
-Route::get('/', function () {
-    return "This will respond to all other '/' requests.";
-});*/

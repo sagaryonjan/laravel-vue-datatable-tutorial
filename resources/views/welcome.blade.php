@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ config('app.locale') }}">
+<html lang="{{ app()->getLocale() }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -68,12 +68,12 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
-                    @if (Auth::check())
+                    @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
+                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('register') }}">Register</a>
+                    @endauth
                 </div>
             @endif
 
@@ -83,34 +83,13 @@
                 </div>
 
                 <div class="links">
-                    <?php $price = 500; ?>
-                    <strong><span id="filter-price"><?php echo $price; ?></span></strong>
-                   <input type="number"  name="number_of_people" min="1" oninput="getDataAsPageType()" id="number_of_people" >
+                    <a href="https://laravel.com/docs">Documentation</a>
+                    <a href="https://laracasts.com">Laracasts</a>
+                    <a href="https://laravel-news.com">News</a>
+                    <a href="https://forge.laravel.com">Forge</a>
+                    <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>
         </div>
     </body>
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-
-    <script>
-        function getDataAsPageType() {
-
-            var number_of_people = $('#number_of_people').val();
-
-            <?php if($price) { ?>
-            var price = "<?php echo $price; ?>";
-            <?php } ?>
-
-
-            var total_price = number_of_people * price;
-
-            $('#filter-price').html('').html(total_price);
-
-
-        }
-
-    </script>
-
-
 </html>
